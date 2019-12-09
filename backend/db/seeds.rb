@@ -16,15 +16,15 @@ test_events = [
     description: 'Adela Micha, Susana Zabaleta y Rebecca de Alba, se reúnen por primera vez en un escenario'\
                 ' para impartir una serie de conferencias bajo el nombre de “Los Mandamientos de una Mujer'\
                 ' Chingona”, cuya gira inició por Estados Unidos en abril pasado con gran éxito.',
-    begins: '2019/12/9 19:00',
-    ends: '2019/12/9 23:00',
+    begins: DateTime.new(2019, 12, 9, 19),
+    ends: DateTime.new(2019, 12, 9, 23),
     category: 'Exposición'
   }, {
     title: '15 Bienal del Cartel en México, en el Centro Cultural Clavijero',
     description: 'La exposición de la Bienal Internacional del Cartel en México sigue su camino y su próxima'\
                  ' parada es el Centro Cultural Clavijero de Morelia, Michoacán.',
-    begins: '2019/12/12 10:00',
-    ends: '2019/02/23 18:00',
+    begins: DateTime.new(2019, 12, 12, 10),
+    ends: DateTime.new(2019, 2, 23, 18),
     category: 'Teatro'
   }
 ]
