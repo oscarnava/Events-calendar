@@ -13,7 +13,7 @@ class UsereventsController < ApplicationController
     return unless (1..5).include? rating
 
     @event = Userevent.find_by_id(params[:id])
-    @status = 'Not found'
+    @status = 'User event not found'
     return unless @event
 
     @event&.rating = params[:rating]
