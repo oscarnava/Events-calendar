@@ -1,3 +1,2 @@
 json.status @status
-json.userId @user_id
-json.eventId @event_id
+json.event @event if @status == 'ok'
