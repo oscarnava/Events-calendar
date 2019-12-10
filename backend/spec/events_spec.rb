@@ -10,7 +10,7 @@ RSpec.describe 'Events management', type: :request do
       'ACCEPT' => 'application/json',     # This is what Rails 4 accepts
       'HTTP_ACCEPT' => 'application/json' # This is what Rails 3 accepts
     }
-    get '/events.json', headers: headers
+    get '/events', headers: headers
   end
 
   it 'returns JSON' do
