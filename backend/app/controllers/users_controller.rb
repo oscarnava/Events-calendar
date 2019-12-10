@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by_name(params[:id])
     @status = 'User not found'
     return unless @user
 
