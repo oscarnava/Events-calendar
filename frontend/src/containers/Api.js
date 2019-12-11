@@ -1,11 +1,18 @@
 import React from 'react';
 
 const SERVER = 'http://localhost:3000';
+const DATE_TIME_REGEX = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/;
 
 const URL = (path = '', values = {}) => {
   const vals = Object.keys(values).map((key) => `/${key}/${values[key]}`).join('');
   return `${SERVER}${vals}/${path}`;
 };
+
+class ApiException {
+  constructor(msg) {
+    this.message = msg;
+  }
+}
 
 const parseDates = (data) => {
   switch (typeof data) {
@@ -15,7 +22,7 @@ const parseDates = (data) => {
     }
 
     case 'string':
-      return data.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/) ? new Date(data) : data;
+      return data.match(DATE_TIME_REGEX) ? new Date(data) : data;
 
     default:
       return data;
@@ -32,6 +39,13 @@ const request = (params) => {
   };
   const resp = fetch(URL(path, values), opts)
     .then((response) => response.json())
+    .then((data) => {
+      if (data.status === 'ok') {
+        delete data.status;
+        return data;
+      }
+      throw new ApiException(data.status);
+    })
     .then(parseDates);
 
   return resp;

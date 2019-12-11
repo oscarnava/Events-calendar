@@ -18,8 +18,8 @@ test('API services', () => {
 test('Event services', async () => {
   // console.log('===================================================================');
 
-  const events = await Api.Event.all();
-  // console.log('events', events);
+  const { events } = await Api.Event.all();
+  // console.log('events....', events);
 
   expect(events).toBeDefined();
 
