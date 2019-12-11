@@ -22,9 +22,9 @@ RSpec.describe 'User events management', type: :request do
     resp = JSON.parse(response.body)
 
     expect(resp['status']).to eq('ok')
-    expect(resp['event']).to be
-    expect(resp['event']['id']).to be
-    expect(resp['event']).to include('user_id' => user.id, 'event_id' => event.id)
+    expect(resp['payload']).to be
+    expect(resp['payload']['id']).to be
+    expect(resp['payload']).to include('user_id' => user.id, 'event_id' => event.id)
   end
 
   it 'Updates the rating for an event' do
@@ -38,9 +38,9 @@ RSpec.describe 'User events management', type: :request do
     resp = JSON.parse(response.body)
 
     expect(resp['status']).to eq('ok')
-    expect(resp['event']).to be
-    expect(resp['event']['rating']).to eq(5)
-    expect(resp['event']).to include('user_id' => user.id, 'event_id' => event.id)
+    expect(resp['payload']).to be
+    expect(resp['payload']['rating']).to eq(5)
+    expect(resp['payload']).to include('user_id' => user.id, 'event_id' => event.id)
   end
 
   it 'Rejects invalid ratings for an event' do
@@ -54,7 +54,7 @@ RSpec.describe 'User events management', type: :request do
     resp = JSON.parse(response.body)
 
     expect(resp['status']).not_to eq('ok')
-    expect(resp['event']).to be_nil
+    expect(resp['payload']).to be_nil
   end
 
   it 'Removes an user-event link' do
@@ -68,7 +68,7 @@ RSpec.describe 'User events management', type: :request do
     resp = JSON.parse(response.body)
 
     expect(resp['status']).to eq('ok')
-    expect(resp['event']).to be
-    expect(resp['event']['id']).to eq(usrevt.id)
+    expect(resp['payload']).to be
+    expect(resp['payload']['id']).to eq(usrevt.id)
   end
 end

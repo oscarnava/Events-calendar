@@ -20,9 +20,9 @@ RSpec.describe 'Events management', type: :request do
     resp = JSON.parse(response.body)
 
     expect(resp['status']).to eq('ok')
-    expect(resp['events']).to be
+    expect(resp['payload']).to be
 
-    resp['events'].tap do |resp_events|
+    resp['payload'].tap do |resp_events|
       events.each_with_index do |event, idx|
         expect(event).to include(resp_events[idx])
       end

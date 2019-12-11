@@ -20,8 +20,11 @@ RSpec.describe 'Users management', type: :request do
 
     resp = JSON.parse(response.body)
     expect(resp['status']).to eq('ok')
-    expect(resp['user']).to include('name' => 'user01', 'email' => 'user01@test.com')
-    expect(resp['user']['id']).to be
+    expect(resp['payload']).to be
+
+    user = resp['payload']
+    expect(user).to include('name' => 'user01', 'email' => 'user01@test.com')
+    expect(user['id']).to be
   end
 
   it 'Get the user by name' do
@@ -34,10 +37,11 @@ RSpec.describe 'Users management', type: :request do
     expect(response).to have_http_status(:success)
 
     resp = JSON.parse(response.body)
-    # warn resp
-
     expect(resp['status']).to eq('ok')
-    expect(resp['name']).to eq(user.name)
-    expect(resp['events']).to eq(user.userevents.all.map(&:event_id))
+    expect(resp['payload']).to be
+
+    payload = resp['payload']
+    expect(payload['name']).to eq(user.name)
+    expect(payload['events']).to eq(user.userevents.all.map(&:event_id))
   end
 end

@@ -1,2 +1,2 @@
 json.status @status
-json.event @event if @status == 'ok'
+json.payload @event if @status == 'ok'
