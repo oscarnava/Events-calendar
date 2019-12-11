@@ -3,6 +3,9 @@ import { render } from '@testing-library/react';
 import App from './App';
 import * as Api from './containers/Api';
 
+const randomName = () => `User${Math.floor(1e6 * Math.random())}`;
+const randomEmail = () => `${randomName()}@testing.com`;
+
 test('renders learn react link', () => {
   const { getByText } = render(<App />);
   const linkElement = getByText(/learn react/i);
@@ -18,7 +21,7 @@ test('API services', () => {
 test('Event services', async () => {
   // console.log('===================================================================');
 
-  const { events } = await Api.Event.all();
+  const events = await Api.Event.index();
   // console.log('events....', events);
 
   expect(events).toBeDefined();
@@ -38,8 +41,12 @@ test('Event services', async () => {
 });
 
 test('User services', async () => {
-  const userA = await Api.User.findByName('tester');
-  expect(userA).toBeDefined();
-});
+  const userName = randomName();
+  await expect(Api.User.findByName(userName))
+    .rejects
+    .toThrow('User not found');
 
-test('Should fail to find undefined user', () => expect(Api.User.findByName('undefined')).rejects.toThrow('User not found'));
+   await expect(Api.User.create(userName,randomEmail()))
+    .resolves
+    .toMatchObject({ name: userName });
+});
