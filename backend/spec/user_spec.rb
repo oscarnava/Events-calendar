@@ -42,6 +42,12 @@ RSpec.describe 'Users management', type: :request do
 
     payload = resp['payload']
     expect(payload['name']).to eq(user.name)
-    expect(payload['events']).to eq(user.userevents.all.map(&:event_id))
+    expect(payload['userevents']).to be
+
+    userevents = JSON.parse(user.userevents.to_json)
+
+    payload['userevents'].each_with_index do |usrevt, idx|
+      expect(userevents[idx]).to include(usrevt)
+    end
   end
 end
