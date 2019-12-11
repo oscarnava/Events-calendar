@@ -24,36 +24,49 @@ const parseDates = (data) => {
 };
 
 const request = (params) => {
-  const { method = 'GET', path = '', ...values } = params;
+  const { method = 'GET', path = '', body = null, ...values } = params;
+
   const opts = {
     method,
-    headers: new Headers({ Accept: 'application/json' }),
+    headers: new Headers({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }),
+    body: body && JSON.stringify(body),
     mode: 'cors',
     cache: 'default',
   };
+
   return fetch(URL(path, values), opts)
     .then((response) => response.json())
     .then((data) => {
       if (data.status !== 'ok') {
         throw Error(data.status);
       }
-      delete data.status;
-      return data;
+      return data.payload;
     })
     .then(parseDates);
 };
 
 const Event = {
-  all: () => request({ method: 'GET', path: 'events' }),
+  index: () => request({ path: 'events' }),
 };
 
 const User = {
-  findByName: (name) => request({ method: 'GET', users: name }),
+  create: (name, email) => request({ method: 'POST', path: 'users',body: { name, email } }),
+  findByName: (name) => request({ users: name }),
 };
+
+const UserEvents = {
+  create: (user, event) => request({ method: 'POST', path: 'userevents', events: event.id, users: user.id }),
+  update: (userEvent, rating) => request({ method: 'PUT', userevents: userEvent, body: { rating } }),
+  delete: (userEvent) => request({ method: 'DELETE', userevents: userEvent }),
+}
 
 export {
   SERVER,
   URL,
   Event,
   User,
+  UserEvents,
 };
