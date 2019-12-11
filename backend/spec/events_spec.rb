@@ -13,15 +13,19 @@ RSpec.describe 'Events management', type: :request do
     get '/events', headers: headers
   end
 
-  it 'returns JSON' do
+  it 'Retrieves all events' do
     expect(response.content_type).to eq('application/json; charset=utf-8')
     expect(response).to have_http_status(:success)
-  end
 
-  it 'Retrieves all events' do
-    body = JSON.parse(response.body)
-    events.each_with_index do |event, idx|
-      expect(event).to include(body[idx])
+    resp = JSON.parse(response.body)
+
+    expect(resp['status']).to eq('ok')
+    expect(resp['events']).to be
+
+    resp['events'].tap do |resp_events|
+      events.each_with_index do |event, idx|
+        expect(event).to include(resp_events[idx])
+      end
     end
   end
 end
