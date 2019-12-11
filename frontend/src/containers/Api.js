@@ -24,13 +24,15 @@ const parseDates = (data) => {
 };
 
 const request = (params) => {
-  const { method = 'GET', path = '', body = null, ...values } = params;
+  const {
+    method = 'GET', path = '', body = null, ...values
+  } = params;
 
   const opts = {
     method,
     headers: new Headers({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     }),
     body: body && JSON.stringify(body),
     mode: 'cors',
@@ -53,15 +55,17 @@ const Event = {
 };
 
 const User = {
-  create: (name, email) => request({ method: 'POST', path: 'users',body: { name, email } }),
+  create: (name, email) => request({ method: 'POST', path: 'users', body: { name, email } }),
   findByName: (name) => request({ users: name }),
 };
 
 const UserEvents = {
-  create: (user, event) => request({ method: 'POST', path: 'userevents', events: event.id, users: user.id }),
+  create: (user, event) => request({
+    method: 'POST', path: 'userevents', events: event.id, users: user.id,
+  }),
   update: (userEvent, rating) => request({ method: 'PUT', userevents: userEvent, body: { rating } }),
   delete: (userEvent) => request({ method: 'DELETE', userevents: userEvent }),
-}
+};
 
 export {
   SERVER,
