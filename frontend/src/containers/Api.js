@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SERVER = 'http://localhost:3000';
 const DATE_TIME_REGEX = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/;
 
@@ -11,7 +9,9 @@ const URL = (path = '', values = {}) => {
 const parseDates = (data) => {
   switch (typeof data) {
     case 'object': {
-      Object.keys(data).forEach((key) => { data[key] = parseDates(data[key]); });
+      if (data) {
+        Object.keys(data).forEach((key) => { data[key] = parseDates(data[key]); });
+      }
       return data;
     }
 
