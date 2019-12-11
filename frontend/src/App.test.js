@@ -19,10 +19,7 @@ test('API services', () => {
 });
 
 test('Event services', async () => {
-  // console.log('===================================================================');
-
   const events = await Api.Event.index();
-  // console.log('events....', events);
 
   expect(events).toBeDefined();
 
@@ -49,4 +46,32 @@ test('User services', async () => {
    await expect(Api.User.create(userName,randomEmail()))
     .resolves
     .toMatchObject({ name: userName });
+});
+
+
+test('User events services', async () => {
+  const user = await Api.User.create(randomName(), randomEmail());
+  const events = await Api.Event.index();
+
+  const promise = Api.UserEvents.create(user, events[0])
+  await expect(promise)
+    .resolves
+    .toMatchObject({ user_id: user.id, event_id: events[0].id, rating: null });
+
+  const ue = await promise
+  delete ue.updated_at
+
+  await expect(Api.UserEvents.update(ue.id, 5))
+    .resolves
+    .toMatchObject({ id: ue.id, rating: 5 });
+
+  await expect(Api.UserEvents.update(ue.id, 9))
+    .rejects
+    .toThrow('Rating should go from 1 to 5');
+
+  ue.rating = 5
+  await expect(Api.UserEvents.delete(ue.id))
+    .resolves
+    .toMatchObject(ue);
+
 });
