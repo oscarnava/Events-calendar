@@ -38,8 +38,8 @@ test('Event services', async () => {
 });
 
 test('User services', async () => {
-  const user = await Api.User.findByName('tester');
-
-  console.log('User', user);
-  expect(user).toBeDefined();
+  const userA = await Api.User.findByName('tester');
+  expect(userA).toBeDefined();
 });
+
+test('Should fail to find undefined user', () => expect(Api.User.findByName('undefined')).rejects.toThrow('User not found'));

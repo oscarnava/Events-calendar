@@ -8,12 +8,6 @@ const URL = (path = '', values = {}) => {
   return `${SERVER}${vals}/${path}`;
 };
 
-class ApiException {
-  constructor(msg) {
-    this.message = msg;
-  }
-}
-
 const parseDates = (data) => {
   switch (typeof data) {
     case 'object': {
@@ -37,18 +31,16 @@ const request = (params) => {
     mode: 'cors',
     cache: 'default',
   };
-  const resp = fetch(URL(path, values), opts)
+  return fetch(URL(path, values), opts)
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 'ok') {
-        delete data.status;
-        return data;
+      if (data.status !== 'ok') {
+        throw Error(data.status);
       }
-      throw new ApiException(data.status);
+      delete data.status;
+      return data;
     })
     .then(parseDates);
-
-  return resp;
 };
 
 const Event = {
