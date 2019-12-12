@@ -30,8 +30,13 @@ export default class Event extends React.Component {
   }
 
   get isSingleDay() {
-    console.log(this.props.info.title, this.beginDay, this.endDay);
+    // console.log(this.props.info.title, this.beginDay, this.endDay);
     return Math.floor(this.beginDay) === Math.floor(this.endDay);
+  }
+
+  handleShowMore = () => {
+    const { extended } = this.state;
+    this.setState({ extended: !extended });
   }
 
   formattedSchedule() {
@@ -63,6 +68,9 @@ export default class Event extends React.Component {
         <div className="category">{category}</div>
         <button type="button" className="btn-add">
           <span>Add to schedule</span>
+        </button>
+        <button type="button" className="more" onClick={this.handleShowMore}>
+          { extended ? 'Show less' : 'Show more' }
         </button>
       </div>
     );
