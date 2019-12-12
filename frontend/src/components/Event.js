@@ -61,7 +61,9 @@ export default class Event extends React.Component {
         <div className="title">{title}</div>
         <div className="description" style={extended ? {} : { display: 'none' }}>{extended ? description : ''}</div>
         <div className="category">{category}</div>
-        <button className="btn-add">Add to schedule</button>
+        <button type="button" className="btn-add">
+          <span>Add to schedule</span>
+        </button>
       </div>
     );
   }

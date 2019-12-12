@@ -1,17 +1,18 @@
+@import '../globals/colors.sass'
+
 $border-radius: 10px
-$app-blue: #35bee0
 
 .Event
   display: grid
   padding: 0 1rem
   grid-template-columns: 30px auto 30px
   grid-template-rows: auto
-  grid-template-areas: "v-line schedule add" "v-line title add" "v-line description add" "v-line category add"
+  grid-template-areas: "v-line schedule schedule" "v-line title add" "v-line description add" "v-line category add"
 
   .schedule
     grid-area: schedule
     text-align: left
-    color: $app-blue
+    color: $app-timeline-color
     font-weight: bold
     font-size: .8rem
     padding-bottom: .3rem
@@ -25,7 +26,7 @@ $app-blue: #35bee0
 
   .time-line
     grid-area: v-line
-    border-right: solid thin $app-blue
+    border-right: solid thin $app-timeline-color
     margin-right: 15px
 
   .title
@@ -55,4 +56,20 @@ $app-blue: #35bee0
 
   .btn-add
     grid-area: add
-    background-color: green
+    background-color: $app-add-to-schedule-color
+    padding: 0
+    margin: 1px
+    border: 1px solid darken($app-add-to-schedule-color, 5%)
+    display: flex
+    justify-content: center
+    justify-items: center
+    border-radius: 4px
+
+    span
+      display: inline-block;
+      transform: rotate(-90deg)
+      font-size: .6rem
+      font-weight: bold
+      color: white
+      // white-space: nowrap
+      // border: dotted thin red
