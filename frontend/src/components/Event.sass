@@ -2,12 +2,11 @@ $border-radius: 10px
 $app-blue: #35bee0
 
 .Event
-  max-width: 620px
   display: grid
   padding: 0 1rem
-  grid-template-columns: 30px auto
+  grid-template-columns: 30px auto 30px
   grid-template-rows: auto
-  grid-template-areas: "v-line schedule" "v-line title" "v-line description" "v-line category"
+  grid-template-areas: "v-line schedule add" "v-line title add" "v-line description add" "v-line category add"
 
   .schedule
     grid-area: schedule
@@ -17,6 +16,12 @@ $app-blue: #35bee0
     font-size: .8rem
     padding-bottom: .3rem
     margin-top: 2rem
+
+    &::before
+      content: '\29BF'
+      position: relative
+      font-size: 1.3rem
+      left: -2rem
 
   .time-line
     grid-area: v-line
@@ -47,3 +52,7 @@ $app-blue: #35bee0
     text-align: right
     border-bottom-left-radius: $border-radius
     border-bottom-right-radius: $border-radius
+
+  .btn-add
+    grid-area: add
+    background-color: green
