@@ -29,6 +29,7 @@ export default class EventsList extends React.Component {
           <Event
             key={event.id}
             info={event}
+            extended
           />
         )) : 'Loading...'}
       </div>
