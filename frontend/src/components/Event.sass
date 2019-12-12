@@ -1,0 +1,49 @@
+$border-radius: 10px
+$app-blue: #35bee0
+
+.Event
+  max-width: 620px
+  display: grid
+  padding: 0 1rem
+  grid-template-columns: 30px auto
+  grid-template-rows: auto
+  grid-template-areas: "v-line schedule" "v-line title" "v-line description" "v-line category"
+
+  .schedule
+    grid-area: schedule
+    text-align: left
+    color: $app-blue
+    font-weight: bold
+    font-size: .8rem
+    padding-bottom: .3rem
+    margin-top: 2rem
+
+  .time-line
+    grid-area: v-line
+    border-right: solid thin $app-blue
+    margin-right: 15px
+
+  .title
+    grid-area: title
+    font-weight: bold
+    background-color: white
+    padding: 1rem
+    border-top-left-radius: $border-radius
+    border-top-right-radius: $border-radius
+
+  .description
+    grid-area: description
+    background-color: white
+    font-size: .8rem
+    padding: .2rem 1rem
+    text-align: justify
+
+  .category
+    grid-area: category
+    background-color: white
+    font-weight: bold
+    font-size: .8rem
+    padding: .4rem 1rem
+    text-align: right
+    border-bottom-left-radius: $border-radius
+    border-bottom-right-radius: $border-radius
