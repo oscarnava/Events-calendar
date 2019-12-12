@@ -25,6 +25,12 @@ export default class User extends React.Component {
     return this.state.events;
   }
 
+  hideForm = () => {
+    this.setState({
+      formVisible: false,
+    });
+  }
+
   handleLogClick = ({ target: { dataset: { login } } }) => {
     this.nameInput.current.value = '';
     this.emailInput.current.value = '';
@@ -35,15 +41,17 @@ export default class User extends React.Component {
   }
 
   handleSubmitClick = () => {
+    if (this.nameInput.current.value === '') {
+      this.hideForm();
+      return;
+    }
+
     // eslint-disable-next-line react/destructuring-assignment
     (this.state.login ? this.doLogin() : this.doSignup())
       .catch(({ message }) => {
         alert(message);
-      });
-
-    this.setState({
-      formVisible: false,
-    });
+      })
+      .finally(this.hideForm);
   }
 
   async doSignup() {
@@ -80,6 +88,7 @@ export default class User extends React.Component {
           <input type="input" ref={this.nameInput} placeholder="Name" />
           <input type="email" ref={this.emailInput} placeholder="email" style={login ? { display: 'none' } : {}} />
           <button type="button" onClick={this.handleSubmitClick}>{login ? 'Log In' : 'Sign Up'}</button>
+          <button type="button" onClick={this.hideForm}>Cancel</button>
         </div>
       </div>
     );
