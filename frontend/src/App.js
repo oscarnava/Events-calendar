@@ -5,6 +5,7 @@ import './App.sass';
 function App() {
   return (
     <div className="App">
+      <h1>Events</h1>
       <EventsList />
     </div>
   );
