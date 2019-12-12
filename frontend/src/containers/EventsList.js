@@ -24,7 +24,7 @@ export default class EventsList extends React.Component {
   render() {
     const { events } = this.state;
     return (
-      <div>
+      <div className="events-list">
         { events ? events.map((event) => (
           <Event
             key={event.id}
