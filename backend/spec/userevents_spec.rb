@@ -14,7 +14,7 @@ RSpec.describe 'User events management', type: :request do
   let!(:event) { Event.all.first }
 
   it 'Creates a new user-event link' do
-    post "/events/#{event.id}/users/#{user.id}/userevents", headers: headers
+    post "/events/#{event.id}/users/#{user.name}/userevents", headers: headers
 
     expect(response.content_type).to eq('application/json; charset=utf-8')
     expect(response).to have_http_status(:success)

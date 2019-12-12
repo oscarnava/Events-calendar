@@ -1,7 +1,8 @@
 class UsereventsController < ApplicationController
   def create
-    @event = Userevent.create(userevents_params)
-    @status = @event.valid? ? 'ok' : @event.errors.full_messages.first
+    user = User.find_by_name(params[:user_id])
+    @event = Userevent.create(user_id: user&.id, event_id: params[:event_id]) 
+    @status = @event&.valid? ? 'ok' : @event.errors.full_messages.first
   end
 
   def update
