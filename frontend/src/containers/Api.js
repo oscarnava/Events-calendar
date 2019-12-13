@@ -61,7 +61,7 @@ const User = {
 
 const UserEvents = {
   create: (user, event) => request({
-    method: 'POST', path: 'userevents', events: event.id, users: user.id,
+    method: 'POST', path: 'userevents', events: event.id, users: user.name,
   }),
   update: (userEvent, rating) => request({ method: 'PUT', userevents: userEvent, body: { rating } }),
   delete: (userEvent) => request({ method: 'DELETE', userevents: userEvent }),

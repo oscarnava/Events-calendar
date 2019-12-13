@@ -8,7 +8,7 @@ const randomEmail = () => `${randomName()}@testing.com`;
 
 test('renders learn react link', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
+  const linkElement = getByText(/Events/i);
   expect(linkElement).toBeInTheDocument();
 });
 

@@ -19,6 +19,11 @@ export default class Event extends React.Component {
     };
   }
 
+  get id() {
+    // eslint-disable-next-line react/destructuring-assignment
+    return this.props.info.id;
+  }
+
   get beginDay() {
     // eslint-disable-next-line react/destructuring-assignment
     return trimHours(this.props.info.begins);
@@ -37,6 +42,11 @@ export default class Event extends React.Component {
   handleShowMore = () => {
     const { extended } = this.state;
     this.setState({ extended: !extended });
+  }
+
+  handleLinkBtnClick = () => {
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.onLinkBtnClick(this);
   }
 
   formattedSchedule() {
@@ -71,7 +81,7 @@ export default class Event extends React.Component {
         <div className="title">{title}</div>
         <div className="description" style={extended ? {} : { display: 'none' }}>{extended ? description : ''}</div>
         <div className="category">{category}</div>
-        <button type="button" className="btn-add">
+        <button type="button" className="btn-add" onClick={this.handleLinkBtnClick}>
           <span>Add to schedule</span>
         </button>
         <button type="button" className="more" onClick={this.handleShowMore}>
