@@ -4,7 +4,7 @@ import React from 'react';
 import format from 'date-format';
 import './Event.sass';
 
-const DATE_FORMAT = 'dd/MM/yy at hh:mm';
+const DATE_FORMAT = 'dd/MM/yyyy at hh:mm';
 const DAY_IN_MILIS = 86400000;
 
 const trimHours = (dateTime) => new Date(Math.floor(dateTime / DAY_IN_MILIS) * DAY_IN_MILIS);
@@ -42,8 +42,13 @@ export default class Event extends React.Component {
   formattedSchedule() {
     if (this.isSingleDay) {
       const { info: { begins, ends } } = this.props;
-      return `On ${format('dd/MM/yy', this.beginDay)}, from ${format('hh:mm', begins)} to ${format('hh:mm', ends)}`;
+      if (begins % DAY_IN_MILIS === ends % DAY_IN_MILIS) { // Extract the hours part
+        return `On ${format('dd/MM/yyyy', this.beginDay)}, at ${format('hh:mm', begins)}`;
+      }
+
+      return `On ${format('dd/MM/yyyy', this.beginDay)}, from ${format('hh:mm', begins)} to ${format('hh:mm', ends)}`;
     }
+
     const { info: { begins, ends } } = this.props;
     return `From ${format(DATE_FORMAT, begins)} to ${format(DATE_FORMAT, ends)}`;
   }
