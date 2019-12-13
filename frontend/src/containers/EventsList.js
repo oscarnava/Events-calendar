@@ -17,6 +17,7 @@ export default class EventsList extends React.Component {
     await Api.Event
       .index()
       .then((events) => {
+        events.sort((a, b) => a.begins - b.begins);
         this.setState({ events });
       });
   }
