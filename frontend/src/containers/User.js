@@ -46,7 +46,7 @@ export default class User extends React.Component {
   }
 
   handleLogClick = ({ target: { dataset: { login } } }) => {
-    this.nameInput.current.value = '';
+    this.nameInput.current.value = 'Monstruo';
     this.emailInput.current.value = '';
     this.setState({
       formVisible: true,

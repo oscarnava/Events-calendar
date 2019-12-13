@@ -27,13 +27,15 @@ export default class EventsList extends React.Component {
 
   render() {
     const { events } = this.state;
-    const { onCreateUserEvent } = this.props;
+    const { schedule = [], onCreateUserEvent } = this.props;
+
     return (
       <div className="events-list">
         { events ? events.map((event) => (
           <Event
             key={event.id}
             info={event}
+            scheduled={schedule.includes(event.id)}
             onLinkBtnClick={onCreateUserEvent}
           />
         )) : 'Loading...'}

@@ -65,7 +65,9 @@ export default class Event extends React.Component {
 
   render() {
     const {
+      scheduled,
       info: {
+        id,
         title,
         description,
         category,
@@ -81,8 +83,8 @@ export default class Event extends React.Component {
         <div className="title">{title}</div>
         <div className="description" style={extended ? {} : { display: 'none' }}>{extended ? description : ''}</div>
         <div className="category">{category}</div>
-        <button type="button" className="btn-add" onClick={this.handleLinkBtnClick}>
-          <span>Add to schedule</span>
+        <button type="button" className={`btn ${scheduled ? 'scheduled' : 'add'}`} onClick={this.handleLinkBtnClick}>
+          <span>{scheduled ? '- schedule' : '+ schedule'}</span>
         </button>
         <button type="button" className="more" onClick={this.handleShowMore}>
           { extended ? 'Show less' : 'Show more' }

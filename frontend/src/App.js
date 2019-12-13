@@ -25,7 +25,7 @@ export default class App extends React.Component {
           <User ref={this.user} />
           <h1>Events</h1>
         </div>
-        <EventsList onCreateUserEvent={this.handleCreateUserEvent} />
+        <EventsList schedule={[40, 41, 42]} onCreateUserEvent={this.handleCreateUserEvent} />
       </div>
     );
   }

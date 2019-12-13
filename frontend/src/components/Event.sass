@@ -55,9 +55,8 @@ $border-radius: 10px
     text-align: right
     border-bottom-right-radius: $border-radius
 
-  .btn-add
+  .btn
     grid-area: add
-    background-color: $app-add-to-schedule-color
     padding: 0
     margin: 1px
     border: 1px solid darken($app-add-to-schedule-color, 5%)
@@ -70,11 +69,24 @@ $border-radius: 10px
     span
       display: block
       transform: rotate(-90deg)
-      font-size: .6rem
       font-weight: bold
       color: white
       // width: 20em
       // border: dotted thin red
+
+  .add
+    background-color: $app-add-to-schedule-color
+
+    span
+      font-size: .6rem
+
+  .scheduled
+    background-color: $app-scheduled-color
+    border-color: darken($app-scheduled-color, 5%)
+
+    span
+      font-size: .5rem
+
   .more
     grid-area: more
     border: 0
