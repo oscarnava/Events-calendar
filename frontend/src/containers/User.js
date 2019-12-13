@@ -1,5 +1,5 @@
 import React from 'react';
-import './EventsList.sass';
+import './User.sass';
 import * as Api from './Api';
 
 export default class User extends React.Component {
@@ -77,7 +77,9 @@ export default class User extends React.Component {
     const { login, formVisible } = this.state;
     return (
       <div className="User">
-        <div className="name" style={this.name ? {} : { display: 'none' }}>{this.name}</div>
+        <div className="name" style={this.name ? {} : { 'font-size': '0.9rem', color: 'lightgrey' }}>
+          {this.name ? `Welcome ${this.name}` : 'Log to save your schedule'}
+        </div>
         <button type="button" className="login" data-login onClick={this.handleLogClick}>
           Login
         </button>
@@ -85,10 +87,14 @@ export default class User extends React.Component {
           Signup
         </button>
         <div className="form" style={formVisible ? {} : { display: 'none' }}>
-          <input type="input" ref={this.nameInput} placeholder="Name" />
-          <input type="email" ref={this.emailInput} placeholder="email" style={login ? { display: 'none' } : {}} />
-          <button type="button" onClick={this.handleSubmitClick}>{login ? 'Log In' : 'Sign Up'}</button>
-          <button type="button" onClick={this.hideForm}>Cancel</button>
+          <input type="input" className="name-in" ref={this.nameInput} placeholder="Name" />
+          <input type="email" className="email-in" ref={this.emailInput} placeholder="email" style={login ? { display: 'none' } : {}} />
+          <button type="button" className="submit" onClick={this.handleSubmitClick}>
+            {login ? 'Log In' : 'Sign Up'}
+          </button>
+          <button type="button" className="cancel" onClick={this.hideForm}>
+            Cancel
+          </button>
         </div>
       </div>
     );

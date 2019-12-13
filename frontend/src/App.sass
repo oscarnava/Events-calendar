@@ -8,13 +8,18 @@
   .App
     padding: 0 10px 10px 10px;
 
-    h1
+    .main-header
       position: sticky
       left: 0
       top: 0
       margin: 0 -10px
-      padding: 1rem 2rem
       background-color: $app-header-color
       color: white
       border-radius: 0 0 10px 10px
       z-index: 999
+
+      h1
+        padding: 0 2rem 1rem
+        border-top: groove 3px lighten($app-header-color, 10%)
+        margin: 0
+        padding-top: .3rem

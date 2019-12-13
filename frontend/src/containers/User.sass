@@ -1,0 +1,62 @@
+@import '../globals/colors.sass'
+
+.User
+  padding: 0 1rem
+  display: grid
+  grid-template-columns: 3fr 1fr 1fr
+  grid-template-rows: auto
+  grid-template-areas: "name login signup" "form form form"
+
+  button
+    background: none
+    border: 0
+    color: white
+    padding: 0.5rem 0
+
+  .name
+    grid-area: name
+    font-size: 1.2rem
+    font-weight: 500
+    padding: 0.5rem 0
+    display: flex
+    align-items: center
+
+  .login
+    grid-area: login
+
+  .signup
+    grid-area: signup
+
+  .form
+    background-color: lighten($app-header-color, 10%)
+    grid-area: form
+    display: grid
+    padding: 7px
+    margin-bottom: 0.5rem
+    border-radius: 5px
+    grid-template-columns: 2fr 1fr 1fr
+    grid-template-rows: auto
+    grid-template-areas: "name-in name-in name-in" "email-in email-in email-in" "void submit cancel"
+
+    input
+      background-color: lighten($app-header-color, 20%)
+      border: solid 1px white
+      border-radius: 3px
+      margin-bottom: 5px
+      padding: 3px
+      color: white
+
+      &::placeholder
+        color: darken(white, 20%)
+
+    .name-in
+      grid-area: name-in
+
+    .email-in
+      grid-area: email-in
+
+    .submit
+      grid-area: submit
+
+    .cancel
+      grid-area: cancel

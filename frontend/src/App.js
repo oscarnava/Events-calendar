@@ -12,8 +12,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {this.user}
-        <h1>Events</h1>
+        <div className="main-header">
+          {this.user}
+          <h1>Events</h1>
+        </div>
         <EventsList />
       </div>
     );
