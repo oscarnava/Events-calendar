@@ -15,6 +15,11 @@ export default class User extends React.Component {
     this.emailInput = React.createRef();
   }
 
+  componentDidUpdate() {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (this.state.formVisible) this.nameInput.current.focus();
+  }
+
   get name() {
     // eslint-disable-next-line react/destructuring-assignment
     return this.state.name;
@@ -77,8 +82,8 @@ export default class User extends React.Component {
     const { login, formVisible } = this.state;
     return (
       <div className="User">
-        <div className="name" style={this.name ? {} : { 'font-size': '0.9rem', color: 'lightgrey' }}>
-          {this.name ? `Welcome ${this.name}` : 'Log to save your schedule'}
+        <div className="name" style={this.name ? {} : { fontSize: '0.9rem', color: 'lightgrey' }}>
+          {this.name ? `Welcome ${this.name}` : 'Login to save your schedule  \u2933'}
         </div>
         <button type="button" className="login" data-login onClick={this.handleLogClick}>
           Login
