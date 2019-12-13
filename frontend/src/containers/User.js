@@ -25,7 +25,7 @@ export default class User extends React.Component {
     return this.state.name;
   }
 
-  get events() {
+  get schedule() {
     // eslint-disable-next-line react/destructuring-assignment
     return this.state.events;
   }
@@ -75,6 +75,7 @@ export default class User extends React.Component {
       .create(name, email)
       .then(({ name }) => {
         this.setState({ name, events: [] });
+        this.props.onChange(name, []);
       });
   }
 
@@ -85,6 +86,7 @@ export default class User extends React.Component {
       .then(({ name, userevents }) => {
         console.log(userevents);
         this.setState({ name, events: userevents });
+        this.props.onChange(name, userevents);
       });
   }
 

@@ -8,13 +8,36 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.user = React.createRef();
+    this.eventsList = React.createRef();
   }
 
-  handleCreateUserEvent = async (event) => {
-    console.log('Create user event', this.user.current, event);
-    await Api.UserEvents.create(this.user.current, event)
-      .catch(({ message }) => {
-        alert(message);
+  componentDidMount() {
+    this.fetchEvents();
+  }
+
+  // handleCreateUserEvent = async (event) => {
+  //   console.log('Create user event', this.user.current, event);
+  //   await Api.UserEvents.create(this.user.current, event)
+  //     .catch(({ message }) => {
+  //       alert(message);
+  //     });
+  // }
+
+  handleOnUserChange = (name, schedule) => {
+    console.log('OnUserChange', name, schedule);
+  }
+
+  handleOnEventChange = (event, { scheduled, rating }) => {
+    console.log('OnEventChange', scheduled, rating);
+  }
+
+  async fetchEvents() {
+    await Api.Event
+      .index()
+      .then((events) => {
+        if (this.eventsList.current) {
+          this.eventsList.current.eventsInfo = events.sort((a, b) => a.begins - b.begins);
+        }
       });
   }
 
@@ -22,10 +45,10 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <div className="main-header">
-          <User ref={this.user} />
+          <User ref={this.user} onChange={this.handleOnUserChange} />
           <h1>Events</h1>
         </div>
-        <EventsList schedule={[40, 41, 42]} onCreateUserEvent={this.handleCreateUserEvent} />
+        <EventsList ref={this.eventsList} onChange={this.handleOnEventChanged} />
       </div>
     );
   }

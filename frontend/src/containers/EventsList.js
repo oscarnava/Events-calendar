@@ -10,19 +10,19 @@ export default class EventsList extends React.Component {
     this.state = {
       events: null,
     };
+    this.eventNodes = {};
   }
 
-  componentDidMount() {
-    this.fetchEvents();
+  componentDidUpdate() {
+    console.log('children', this.eventNodes);
   }
 
-  async fetchEvents() {
-    await Api.Event
-      .index()
-      .then((events) => {
-        events.sort((a, b) => a.begins - b.begins);
-        this.setState({ events });
-      });
+  set eventsInfo(events) {
+    this.setState({ events });
+  }
+
+  eventById(id) {
+    return this.eventNodes[id];
   }
 
   render() {
@@ -31,14 +31,19 @@ export default class EventsList extends React.Component {
 
     return (
       <div className="events-list">
-        { events ? events.map((event) => (
-          <Event
-            key={event.id}
-            info={event}
-            scheduled={schedule.includes(event.id)}
-            onLinkBtnClick={onCreateUserEvent}
-          />
-        )) : 'Loading...'}
+        { events ? events.map((event) => {
+          const { id } = event;
+          this.eventNodes[id] = this.eventNodes[id] || React.createRef();
+          return (
+            <Event
+              key={id}
+              ref={this.eventNodes[id]}
+              info={event}
+              scheduled={schedule.includes(id)}
+              onLinkBtnClick={onCreateUserEvent}
+            />
+          );
+        }) : 'Loading...'}
       </div>
     );
   }
