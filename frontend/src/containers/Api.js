@@ -1,4 +1,4 @@
-const SERVER = 'http://localhost:3000';
+const SERVER = 'https://events-calendar-morelia.herokuapp.com';
 const DATE_TIME_REGEX = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/;
 
 const URL = (path = '', values = {}) => {
