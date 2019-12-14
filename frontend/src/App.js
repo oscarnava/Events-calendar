@@ -16,21 +16,17 @@ export default class App extends React.Component {
     this.fetchEvents();
   }
 
-  addEventToUser = (event) => {
-    console.log('Create user event', this.user.current, event);
-    return Api.UserEvents.create(this.user.current, event)
+  addEventToUser = (event) => Api.UserEvents.create(this.user.current, event)
       .then((data) => {
         this.user.current.addEvent(data);
       })
       .catch(({ message }) => {
         alert(message);
-      });
-  }
+      })
 
   removeEventFromUser = (event) => {
     const { schedule } = this.user.current;
 
-    console.log('Remove user event', event, schedule[event.id]);
     return Api.UserEvents.delete(schedule[event.id].id)
       .then((data) => {
         this.user.current.removeEvent(data);
@@ -42,7 +38,6 @@ export default class App extends React.Component {
 
   handleOnUserChange = (name, links) => {
     const { schedule } = this.user.current;
-    console.log('OnUserChange', name, links, schedule);
 
     const eventsList = this.eventsList.current;
     this.eventsInfo.forEach(({ id }) => {
@@ -53,8 +48,6 @@ export default class App extends React.Component {
   }
 
   handleOnEventChange = (event, { scheduled, rating }) => {
-    console.log('OnEventChange', scheduled, rating);
-
     const { name } = this.user.current;
     if (name) {
       if (scheduled !== undefined) {

@@ -5,7 +5,7 @@ $border-radius: 10px
 .Event
   display: grid
   padding: 0 1rem
-  grid-template-columns: 30px 1fr 2fr 30px
+  grid-template-columns: 30px 1fr 2fr auto
   grid-template-rows: auto
   grid-template-areas: "v-line schedule schedule schedule" "v-line title title add" "v-line description description add" "v-line more category add"
 
@@ -22,6 +22,7 @@ $border-radius: 10px
       content: '\29BF'
       position: relative
       font-size: 1.3rem
+      color: $app-header-color
       left: -2rem
 
   .time-line
@@ -60,6 +61,7 @@ $border-radius: 10px
 
   .btn
     grid-area: add
+    width: 30px
     padding: 0
     margin: 1px
     border: 1px solid darken($app-add-to-schedule-color, 5%)
@@ -74,21 +76,16 @@ $border-radius: 10px
       transform: rotate(-90deg)
       font-weight: bold
       color: white
+      font-size: .8rem
       // width: 20em
       // border: dotted thin red
 
   .add
     background-color: $app-add-to-schedule-color
 
-    span
-      font-size: .6rem
-
   .scheduled
     background-color: $app-scheduled-color
     border-color: darken($app-scheduled-color, 5%)
-
-    span
-      font-size: .5rem
 
   .more
     grid-area: more

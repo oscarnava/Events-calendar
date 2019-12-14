@@ -1,7 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './EventsList.sass';
-import * as Api from './Api';
 import Event from '../components/Event';
 
 export default class EventsList extends React.Component {
@@ -14,7 +13,6 @@ export default class EventsList extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('children', this.eventNodes);
   }
 
   set eventsInfo(events) {

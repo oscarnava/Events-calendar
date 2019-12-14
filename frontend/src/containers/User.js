@@ -108,7 +108,6 @@ export default class User extends React.Component {
     return Api.User
       .findByName(name)
       .then(({ name, userevents }) => {
-        console.log(userevents);
         this.doOnChange(name, userevents);
       });
   }

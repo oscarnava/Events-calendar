@@ -9,9 +9,11 @@
 
   button
     background: none
-    border: 0
+    border: 2px solid lighten($app-header-color, 20%)
     color: white
     padding: 0.5rem 0
+    border-radius: 5px
+    margin: 5px 3px
 
   .name
     grid-area: name
@@ -34,7 +36,7 @@
     padding: 7px
     margin-bottom: 0.5rem
     border-radius: 5px
-    grid-template-columns: 2fr 1fr 1fr
+    grid-template-columns: 1fr auto auto
     grid-template-rows: auto
     grid-template-areas: "name-in name-in name-in" "email-in email-in email-in" "void submit cancel"
 
@@ -57,6 +59,8 @@
 
     .submit
       grid-area: submit
+      padding: 3px 10px
 
     .cancel
       grid-area: cancel
+      padding: 3px 10px

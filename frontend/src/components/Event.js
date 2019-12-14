@@ -16,7 +16,6 @@ export default class Event extends React.Component {
 
     this.state = {
       extended: !!props.extended,
-      scheduled: false,
       rating: null,
     };
   }
@@ -37,7 +36,6 @@ export default class Event extends React.Component {
   }
 
   get isSingleDay() {
-    // console.log(this.props.info.title, this.beginDay, this.endDay);
     return Math.floor(this.beginDay) === Math.floor(this.endDay);
   }
 
@@ -52,8 +50,7 @@ export default class Event extends React.Component {
     // eslint-disable-next-line react/destructuring-assignment
     const action = this.props.onChange(this, { scheduled: !scheduled });
     if (action) {
-      await action.then((param) => {
-        console.log('Action', param);
+      await action.then(() => {
         this.setState({ scheduled: !scheduled });
       });
     }
@@ -88,6 +85,7 @@ export default class Event extends React.Component {
     } = this.props;
 
     const { extended, scheduled, rating } = this.state;
+    const logged = (scheduled !== undefined);
 
     return (
       <div className="Event">
@@ -97,7 +95,7 @@ export default class Event extends React.Component {
         <div className="title">{title}</div>
         <div className="description" style={extended ? {} : { display: 'none' }}>{extended ? description : ''}</div>
         <div className="category">{category}</div>
-        <button type="button" className={`btn ${scheduled ? 'scheduled' : 'add'}`} onClick={this.handleLinkBtnClick}>
+        <button type="button" className={`btn ${scheduled ? 'scheduled' : 'add'}`} style={logged ? {} : { display: 'none' }} onClick={this.handleLinkBtnClick}>
           <span>{scheduled ? '- schedule' : '+ schedule'}</span>
         </button>
         <button type="button" className="more" onClick={this.handleShowMore}>
