@@ -13,6 +13,7 @@ export default class User extends React.Component {
     };
     this.nameInput = React.createRef();
     this.emailInput = React.createRef();
+    this.scheduleMemo = null;
   }
 
   componentDidUpdate() {
@@ -26,17 +27,21 @@ export default class User extends React.Component {
   }
 
   get schedule() {
-    // eslint-disable-next-line react/destructuring-assignment
-    return this.state.events;
+    if (this.scheduleMemo) return this.scheduleMemo;
+
+    const { events } = this.state;
+    this.scheduleMemo = {};
+    // eslint-disable-next-line camelcase
+    events.forEach(({ id, event_id, rating }) => { this.scheduleMemo[event_id] = { id, rating }; });
+    return this.scheduleMemo;
   }
 
-  findEvent = (eventId) => {
+  linkByEventId = (eventId) => {
     const { events } = this.state;
     if (!events) return null;
 
     // eslint-disable-next-line camelcase
-    const { id } = events.find(({ event_id }) => eventId === event_id);
-    return id;
+    return events.find(({ event_id }) => eventId === event_id);
   }
 
   hideForm = () => {
@@ -68,14 +73,33 @@ export default class User extends React.Component {
       .finally(this.hideForm);
   }
 
+  // eslint-disable-next-line camelcase
+  addEvent({ id, event_id, rating }) {
+    this.scheduleMemo = null;
+    const { events } = this.state;
+    events.push({ id, event_id, rating });
+    this.setState({ events });
+  }
+
+  removeEvent({ id }) {
+    this.scheduleMemo = null;
+    const { events } = this.state;
+    this.setState({ events: events.filter((evt) => evt.it !== id) });
+  }
+
+  doOnChange(name, userevents = []) {
+    this.scheduleMemo = null;
+    this.setState({ name, events: userevents });
+    this.props.onChange(name, userevents);
+  }
+
   async doSignup() {
     const name = this.nameInput.current.value;
     const email = this.emailInput.current.value;
     return Api.User
       .create(name, email)
       .then(({ name }) => {
-        this.setState({ name, events: [] });
-        this.props.onChange(name, []);
+        this.doOnChange(name);
       });
   }
 
@@ -85,8 +109,7 @@ export default class User extends React.Component {
       .findByName(name)
       .then(({ name, userevents }) => {
         console.log(userevents);
-        this.setState({ name, events: userevents });
-        this.props.onChange(name, userevents);
+        this.doOnChange(name, userevents);
       });
   }
 

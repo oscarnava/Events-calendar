@@ -16,6 +16,8 @@ export default class Event extends React.Component {
 
     this.state = {
       extended: !!props.extended,
+      scheduled: false,
+      rating: null,
     };
   }
 
@@ -44,9 +46,22 @@ export default class Event extends React.Component {
     this.setState({ extended: !extended });
   }
 
-  handleLinkBtnClick = () => {
+  handleLinkBtnClick = async () => {
+    const { scheduled } = this.state;
+
     // eslint-disable-next-line react/destructuring-assignment
-    this.props.onLinkBtnClick(this);
+    const action = this.props.onChange(this, { scheduled: !scheduled });
+    if (action) {
+      await action.then((param) => {
+        console.log('Action', param);
+        this.setState({ scheduled: !scheduled });
+      });
+    }
+  }
+
+  updateState(newState) {
+    const { scheduled, rating } = newState;
+    this.setState({ scheduled, rating });
   }
 
   formattedSchedule() {
@@ -65,21 +80,20 @@ export default class Event extends React.Component {
 
   render() {
     const {
-      scheduled,
       info: {
-        id,
         title,
         description,
         category,
       },
     } = this.props;
 
-    const { extended } = this.state;
+    const { extended, scheduled, rating } = this.state;
 
     return (
       <div className="Event">
         <div className="time-line" />
         <div className="schedule">{this.formattedSchedule()}</div>
+        <div className="rating">{rating}</div>
         <div className="title">{title}</div>
         <div className="description" style={extended ? {} : { display: 'none' }}>{extended ? description : ''}</div>
         <div className="category">{category}</div>

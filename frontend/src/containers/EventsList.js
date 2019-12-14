@@ -21,13 +21,13 @@ export default class EventsList extends React.Component {
     this.setState({ events });
   }
 
-  eventById(id) {
-    return this.eventNodes[id];
+  updateEvent(id, { scheduled, rating }) {
+    this.eventNodes[id].current.updateState({ scheduled, rating });
   }
 
   render() {
+    const { onChange } = this.props;
     const { events } = this.state;
-    const { schedule = [], onCreateUserEvent } = this.props;
 
     return (
       <div className="events-list">
@@ -39,8 +39,7 @@ export default class EventsList extends React.Component {
               key={id}
               ref={this.eventNodes[id]}
               info={event}
-              scheduled={schedule.includes(id)}
-              onLinkBtnClick={onCreateUserEvent}
+              onChange={onChange}
             />
           );
         }) : 'Loading...'}
