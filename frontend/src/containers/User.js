@@ -1,16 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './User.sass';
 import * as Api from './Api';
+import './User.sass';
 
-export default class User extends React.Component {
+import {
+  setUser,
+} from '../actions';
+
+const mapStateToProps = ({
+  name, events,
+}) => ({
+  name, events,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (name, events) => dispatch(setUser(name, events)),
+});
+
+class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
       formVisible: false,
       login: true,
-      events: null,
     };
     this.nameInput = React.createRef();
     this.emailInput = React.createRef();
@@ -20,30 +33,34 @@ export default class User extends React.Component {
   componentDidUpdate() {
     // eslint-disable-next-line react/destructuring-assignment
     if (this.state.formVisible) this.nameInput.current.focus();
+
+    const { name, onChange } = this.props;
+    console.log('componentDidUpdate', name, this.schedule);
+    onChange(name, this.schedule);
   }
 
   get name() {
     // eslint-disable-next-line react/destructuring-assignment
-    return this.state.name;
+    return this.props.name;
   }
 
   get schedule() {
-    if (this.scheduleMemo) return this.scheduleMemo;
-
-    const { events } = this.state;
-    this.scheduleMemo = {};
-    // eslint-disable-next-line camelcase
-    events.forEach(({ id, event_id, rating }) => { this.scheduleMemo[event_id] = { id, rating }; });
-    return this.scheduleMemo;
-  }
-
-  linkByEventId = (eventId) => {
-    const { events } = this.state;
-    if (!events) return null;
+    const { events } = this.props;
+    const schedule = {};
+    if (!events) return schedule;
 
     // eslint-disable-next-line camelcase
-    return events.find(({ event_id }) => eventId === event_id);
+    events.forEach(({ id, event_id, rating }) => { schedule[event_id] = { id, rating }; });
+    return schedule;
   }
+
+  // linkByEventId = (eventId) => {
+  //   const { events } = this.props;
+  //   if (!events) return null;
+
+  //   // eslint-disable-next-line camelcase
+  //   return events.find(({ event_id }) => eventId === event_id);
+  // }
 
   hideForm = () => {
     this.setState({
@@ -76,23 +93,13 @@ export default class User extends React.Component {
 
   // eslint-disable-next-line camelcase
   addEvent({ id, event_id, rating }) {
-    this.scheduleMemo = null;
-    const { events } = this.state;
+    const { events } = this.props;
     events.push({ id, event_id, rating });
-    this.setState({ events });
   }
 
   removeEvent({ id }) {
-    this.scheduleMemo = null;
-    const { events } = this.state;
-    this.setState({ events: events.filter((evt) => evt.it !== id) });
-  }
-
-  doOnChange(name, userevents = []) {
-    const { onChange } = this.props;
-    this.scheduleMemo = null;
-    this.setState({ name, events: userevents });
-    onChange(name, userevents);
+    const { events } = this.props;
+    this.props = events.filter((evt) => evt.it !== id);
   }
 
   async doSignup() {
@@ -101,7 +108,8 @@ export default class User extends React.Component {
     return Api.User
       .create(name, email)
       .then(({ name }) => {
-        this.doOnChange(name);
+        const { setUser } = this.props;
+        setUser(name);
       });
   }
 
@@ -110,7 +118,8 @@ export default class User extends React.Component {
     return Api.User
       .findByName(name)
       .then(({ name, userevents }) => {
-        this.doOnChange(name, userevents);
+        const { setUser } = this.props;
+        setUser(name, userevents);
       });
   }
 
@@ -142,6 +151,16 @@ export default class User extends React.Component {
   }
 }
 
-User.propTypes = {
-  onChange: PropTypes.func.isRequired,
+User.defaultProps = {
+  name: null,
+  events: null,
 };
+
+User.propTypes = {
+  name: PropTypes.string,
+  events: PropTypes.arrayOf(PropTypes.object),
+  onChange: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(User);
