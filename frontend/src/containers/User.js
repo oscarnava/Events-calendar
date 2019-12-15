@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './User.sass';
 import * as Api from './Api';
 
@@ -50,12 +51,12 @@ export default class User extends React.Component {
     });
   }
 
-  handleLogClick = ({ target: { dataset: { login } } }) => {
+  handleLogClick = ({ target }) => {
     this.nameInput.current.value = 'Monstruo';
     this.emailInput.current.value = '';
     this.setState({
       formVisible: true,
-      login,
+      login: !!target.dataset.login,
     });
   }
 
@@ -88,9 +89,10 @@ export default class User extends React.Component {
   }
 
   doOnChange(name, userevents = []) {
+    const { onChange } = this.props;
     this.scheduleMemo = null;
     this.setState({ name, events: userevents });
-    this.props.onChange(name, userevents);
+    onChange(name, userevents);
   }
 
   async doSignup() {
@@ -139,3 +141,7 @@ export default class User extends React.Component {
     );
   }
 }
+
+User.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};

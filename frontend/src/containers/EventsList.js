@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
+import PropTypes from 'prop-types';
 import './EventsList.sass';
 import Event from '../components/Event';
 
@@ -15,6 +16,9 @@ export default class EventsList extends React.Component {
   componentDidUpdate() {
   }
 
+  /**
+   * @param {Array} events
+   */
   set eventsInfo(events) {
     this.setState({ events });
   }
@@ -45,3 +49,7 @@ export default class EventsList extends React.Component {
     );
   }
 }
+
+EventsList.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};

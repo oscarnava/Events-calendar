@@ -17,12 +17,12 @@ export default class App extends React.Component {
   }
 
   addEventToUser = (event) => Api.UserEvents.create(this.user.current, event)
-      .then((data) => {
-        this.user.current.addEvent(data);
-      })
-      .catch(({ message }) => {
-        alert(message);
-      })
+    .then((data) => {
+      this.user.current.addEvent(data);
+    })
+    .catch(({ message }) => {
+      alert(message);
+    })
 
   removeEventFromUser = (event) => {
     const { schedule } = this.user.current;
@@ -36,7 +36,7 @@ export default class App extends React.Component {
       });
   }
 
-  handleOnUserChange = (name, links) => {
+  handleOnUserChange = () => {
     const { schedule } = this.user.current;
 
     const eventsList = this.eventsList.current;
