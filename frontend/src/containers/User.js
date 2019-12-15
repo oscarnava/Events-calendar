@@ -6,6 +6,8 @@ import './User.sass';
 
 import {
   setUser,
+  linkEvent,
+  unlinkEvent,
 } from '../actions';
 
 const mapStateToProps = ({
@@ -16,6 +18,8 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => ({
   setUser: (name, events) => dispatch(setUser(name, events)),
+  linkEvent: (link) => dispatch(linkEvent(link)),
+  unlinkEvent: (linkId) => dispatch(unlinkEvent(linkId)),
 });
 
 class User extends React.Component {
@@ -93,13 +97,13 @@ class User extends React.Component {
 
   // eslint-disable-next-line camelcase
   addEvent({ id, event_id, rating }) {
-    const { events } = this.props;
-    events.push({ id, event_id, rating });
+    const { linkEvent } = this.props;
+    linkEvent({ id, event_id, rating });
   }
 
   removeEvent({ id }) {
-    const { events } = this.props;
-    this.props = events.filter((evt) => evt.it !== id);
+    const { unlinkEvent } = this.props;
+    unlinkEvent(id);
   }
 
   async doSignup() {
@@ -161,6 +165,8 @@ User.propTypes = {
   events: PropTypes.arrayOf(PropTypes.object),
   onChange: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
+  linkEvent: PropTypes.func.isRequired,
+  unlinkEvent: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(User);
