@@ -24,6 +24,7 @@ export default class EventsList extends React.Component {
   }
 
   updateEvent(id, { scheduled, rating }) {
+    console.log('updateEvent', id, scheduled, rating);
     this.eventNodes[id].current.updateState({ scheduled, rating });
   }
 

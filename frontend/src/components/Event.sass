@@ -5,9 +5,9 @@ $border-radius: 10px
 .Event
   display: grid
   padding: 0 1rem
-  grid-template-columns: 30px 1fr 2fr auto
+  grid-template-columns: 30px auto auto 1fr auto
   grid-template-rows: auto
-  grid-template-areas: "v-line schedule schedule schedule" "v-line title title add" "v-line description description add" "v-line more category add"
+  grid-template-areas: "v-line schedule schedule schedule schedule" "v-line title title title add" "v-line description description description add" "v-line more rating category add"
 
   .schedule
     grid-area: schedule
@@ -23,7 +23,7 @@ $border-radius: 10px
       position: relative
       font-size: 1.3rem
       color: $app-header-color
-      left: -2rem
+      left: -24px
 
   .time-line
     grid-area: v-line
@@ -31,7 +31,10 @@ $border-radius: 10px
     margin-right: 15px
 
   .rating
-    display: none
+    grid-area: rating
+    background-color: white
+    display: flex
+    justify-items: center
 
   .title
     grid-area: title
@@ -93,7 +96,7 @@ $border-radius: 10px
     background: none
     color: $app-timeline-color
     font-size: .7rem
-    padding: 0
+    padding: 0 1rem
     background-color: white
     border-bottom-left-radius: $border-radius
     cursor: pointer

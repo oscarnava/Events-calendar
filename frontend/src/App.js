@@ -53,6 +53,10 @@ export default class App extends React.Component {
       if (scheduled !== undefined) {
         return scheduled ? this.addEventToUser(event) : this.removeEventFromUser(event);
       }
+      if (rating !== undefined) {
+        const eventsList = this.eventsList.current;
+        eventsList.updateEvent(event.id, { scheduled: true, rating });
+      }
     }
 
     return null;

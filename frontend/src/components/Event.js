@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
+import PropTypes from 'prop-types';
 import format from 'date-format';
+import Rating from './Rating';
 import './Event.sass';
 
 const DATE_FORMAT = 'dd/MM/yyyy at hh:mm';
@@ -16,7 +16,7 @@ export default class Event extends React.Component {
 
     this.state = {
       extended: !!props.extended,
-      rating: null,
+      rating: props.rating || null,
     };
   }
 
@@ -56,6 +56,12 @@ export default class Event extends React.Component {
     }
   }
 
+  handleRatingClick = (rating) => {
+    // eslint-disable-next-line react/destructuring-assignment
+    const action = this.props.onChange(this, { rating });
+    console.log('handleRatingClick', action);
+  }
+
   updateState(newState) {
     const { scheduled, rating } = newState;
     this.setState({ scheduled, rating });
@@ -91,7 +97,6 @@ export default class Event extends React.Component {
       <div className="Event">
         <div className="time-line" />
         <div className="schedule">{this.formattedSchedule()}</div>
-        <div className="rating">{rating}</div>
         <div className="title">{title}</div>
         <div className="description" style={extended ? {} : { display: 'none' }}>{extended ? description : ''}</div>
         <div className="category">{category}</div>
@@ -101,7 +106,29 @@ export default class Event extends React.Component {
         <button type="button" className="more" onClick={this.handleShowMore}>
           { extended ? 'Show less' : 'Show more' }
         </button>
+        <div className="rating" style={logged && scheduled ? {} : { display: 'none' }}>
+          <Rating value={rating} onChange={this.handleRatingClick} />
+        </div>
       </div>
     );
   }
 }
+
+Event.defaultProps = {
+  extended: false,
+  rating: null,
+};
+
+Event.propTypes = {
+  info: PropTypes.exact({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    begins: PropTypes.instanceOf(Date),
+    ends: PropTypes.instanceOf(Date),
+    category: PropTypes.string,
+  }).isRequired,
+  extended: PropTypes.bool,
+  rating: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
+};
