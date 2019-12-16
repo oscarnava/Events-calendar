@@ -16,7 +16,7 @@ files:
     - './backend/config/*'
     - './backend/Guardfile'
     - './backend/Rakefile'
-    - './frontend/buid/*'
+    - './frontend/build/*'
     - './frontend/src/serviceWorker.js'
     - './frontend/webpack.config.babel.js'
     - './frontend/tests/*'
