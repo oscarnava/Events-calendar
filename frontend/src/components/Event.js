@@ -8,6 +8,7 @@ const DATE_FORMAT = 'dd/MM/yyyy at hh:mm';
 const DAY_IN_MILIS = 86400000;
 
 const trimHours = (dateTime) => new Date(Math.floor(dateTime / DAY_IN_MILIS) * DAY_IN_MILIS);
+const trimDays = (dateTime) => Math.floor(dateTime % DAY_IN_MILIS);
 
 // const { id, title, description, begins, ends, category }
 export default class Event extends React.Component {
@@ -69,14 +70,18 @@ export default class Event extends React.Component {
   formattedSchedule() {
     if (this.isSingleDay) {
       const { info: { begins, ends } } = this.props;
-      if (begins % DAY_IN_MILIS === ends % DAY_IN_MILIS) { // Extract the hours part
-        return `On ${format('dd/MM/yyyy', this.beginDay)}, at ${format('hh:mm', begins)}`;
+      if (trimDays(begins) === trimDays(ends)) { // Extract the hours part
+        return `${this.beginDay.toDateString()}, at ${format('hh:mm', begins)}`;
       }
 
-      return `On ${format('dd/MM/yyyy', this.beginDay)}, from ${format('hh:mm', begins)} to ${format('hh:mm', ends)}`;
+      return `${this.beginDay.toDateString()}, from ${format('hh:mm', begins)} to ${format('hh:mm', ends)}`;
     }
 
     const { info: { begins, ends } } = this.props;
+    if (trimDays(begins) || trimDays(ends)) { // Extract the hours part
+      return `From ${begins.toDateString()} to ${ends.toDateString()}`;
+    }
+
     return `From ${format(DATE_FORMAT, begins)} to ${format(DATE_FORMAT, ends)}`;
   }
 

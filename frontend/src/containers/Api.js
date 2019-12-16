@@ -16,7 +16,7 @@ const parseDates = (data) => {
     }
 
     case 'string':
-      return data.match(DATE_TIME_REGEX) ? new Date(data) : data;
+      return data.match(DATE_TIME_REGEX) ? new Date(data.slice(0, 19)) : data;
 
     default:
       return data;
