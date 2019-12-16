@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { showErrorMessage } from '../components/ErrorMsg';
 import * as Api from './Api';
 import './User.sass';
 
@@ -83,7 +84,8 @@ class User extends React.Component {
     // eslint-disable-next-line react/destructuring-assignment
     (this.state.login ? this.doLogin() : this.doSignup())
       .catch(({ message }) => {
-        alert(message);
+        showErrorMessage(message);
+        // alert(message);
       })
       .finally(this.hideForm);
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import * as Api from './containers/Api';
 import EventsList from './containers/EventsList';
 import User from './containers/User';
+import { showErrorMessage, ErrorMsg } from './components/ErrorMsg';
 import './App.sass';
 
 export default class App extends React.Component {
@@ -21,7 +22,7 @@ export default class App extends React.Component {
       this.user.current.addEvent(data);
     })
     .catch(({ message }) => {
-      alert(message);
+      showErrorMessage(message);
     })
 
   removeEventFromUser = (event) => {
@@ -32,7 +33,7 @@ export default class App extends React.Component {
         this.user.current.removeEvent(data);
       })
       .catch(({ message }) => {
-        alert(message);
+        showErrorMessage(message);
       });
   }
 
@@ -44,7 +45,7 @@ export default class App extends React.Component {
         this.user.current.changeRating(data);
       })
       .catch(({ message }) => {
-        alert(message);
+        showErrorMessage(message);
       });
   }
 
@@ -92,6 +93,7 @@ export default class App extends React.Component {
           <h1>Events</h1>
         </div>
         <EventsList ref={this.eventsList} onChange={this.handleOnEventChange} />
+        <ErrorMsg />
       </div>
     );
   }
