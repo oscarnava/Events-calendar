@@ -1,16 +1,7 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
 import * as Api from './containers/Api';
 
 const randomName = () => `User${Math.floor(1e6 * Math.random())}`;
 const randomEmail = () => `${randomName()}@testing.com`;
-
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/Events/i);
-  expect(linkElement).toBeInTheDocument();
-});
 
 test('API services', () => {
   expect(Api.URL()).toEqual(`${Api.SERVER}/`);
