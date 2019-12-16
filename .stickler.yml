@@ -11,12 +11,12 @@ fixers:
 
 files:
   ignore:
-    - './backend/bin/*'
-    - './backend/db/*'
-    - './backend/config/*'
-    - './backend/Guardfile'
-    - './backend/Rakefile'
-    - './frontend/buid/*'
-    - './frontend/src/serviceWorker.js'
-    - './frontend/webpack.config.babel.js'
-    - './frontend/tests/*'
+    - 'backend/bin/*'
+    - 'backend/db/*'
+    - 'backend/config/*'
+    - 'backend/Guardfile'
+    - 'backend/Rakefile'
+    - 'frontend/build/*'
+    - 'frontend/src/serviceWorker.js'
+    - 'frontend/webpack.config.babel.js'
+    - 'frontend/tests/*'
