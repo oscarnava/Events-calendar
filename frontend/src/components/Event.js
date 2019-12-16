@@ -18,6 +18,8 @@ export default class Event extends React.Component {
     this.state = {
       extended: !!props.extended,
       rating: props.rating || null,
+      scheduled: !!props.scheduled,
+      logged: false,
     };
   }
 
@@ -63,8 +65,8 @@ export default class Event extends React.Component {
   }
 
   updateState(newState) {
-    const { scheduled, rating } = newState;
-    this.setState({ scheduled, rating });
+    const { scheduled, rating, logged } = newState;
+    this.setState({ scheduled, rating, logged });
   }
 
   formattedSchedule() {
@@ -94,8 +96,9 @@ export default class Event extends React.Component {
       },
     } = this.props;
 
-    const { extended, scheduled, rating } = this.state;
-    const logged = (scheduled !== undefined);
+    const {
+      extended, scheduled, rating, logged,
+    } = this.state;
 
     return (
       <div className="Event">
@@ -121,6 +124,7 @@ export default class Event extends React.Component {
 Event.defaultProps = {
   extended: false,
   rating: null,
+  scheduled: false,
 };
 
 Event.propTypes = {
@@ -134,5 +138,6 @@ Event.propTypes = {
   }).isRequired,
   extended: PropTypes.bool,
   rating: PropTypes.number,
+  scheduled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };

@@ -55,8 +55,11 @@ export default class App extends React.Component {
     const eventsList = this.eventsList.current;
     this.eventsInfo.forEach(({ id }) => {
       const sched = schedule[id];
-      const state = sched ? { scheduled: true, rating: sched.rating } : { scheduled: null, rating: null };
-      eventsList.updateEvent(id, state);
+      eventsList.updateEvent(id, {
+        scheduled: !!sched,
+        rating: sched ? sched.rating : null,
+        logged: true,
+      });
     });
   }
 

@@ -23,8 +23,8 @@ export default class EventsList extends React.Component {
     this.setState({ events });
   }
 
-  updateEvent(id, { scheduled, rating }) {
-    this.eventNodes[id].current.updateState({ scheduled, rating });
+  updateEvent(id, { scheduled, rating, logged }) {
+    this.eventNodes[id].current.updateState({ scheduled, rating, logged });
   }
 
   render() {
