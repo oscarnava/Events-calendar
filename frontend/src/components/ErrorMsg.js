@@ -43,10 +43,12 @@ const showErrorMessage = (message) => {
 
 ErrorMsg.defaultProps = {
   message: '',
+  visible: false,
 };
 
 ErrorMsg.propTypes = {
   message: PropTypes.string,
+  visible: PropTypes.bool,
 };
 
 export { ErrorMsg, showErrorMessage };
