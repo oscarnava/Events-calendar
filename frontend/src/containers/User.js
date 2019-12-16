@@ -6,6 +6,7 @@ import './User.sass';
 
 import {
   setUser,
+  setRating,
   linkEvent,
   unlinkEvent,
 } from '../actions';
@@ -18,6 +19,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => ({
   setUser: (name, events) => dispatch(setUser(name, events)),
+  setRating: (linkId, rating) => dispatch(setRating(linkId, rating)),
   linkEvent: (link) => dispatch(linkEvent(link)),
   unlinkEvent: (linkId) => dispatch(unlinkEvent(linkId)),
 });
@@ -39,7 +41,6 @@ class User extends React.Component {
     if (this.state.formVisible) this.nameInput.current.focus();
 
     const { name, onChange } = this.props;
-    console.log('componentDidUpdate', name, this.schedule);
     onChange(name, this.schedule);
   }
 
@@ -58,14 +59,6 @@ class User extends React.Component {
     return schedule;
   }
 
-  // linkByEventId = (eventId) => {
-  //   const { events } = this.props;
-  //   if (!events) return null;
-
-  //   // eslint-disable-next-line camelcase
-  //   return events.find(({ event_id }) => eventId === event_id);
-  // }
-
   hideForm = () => {
     this.setState({
       formVisible: false,
@@ -73,7 +66,7 @@ class User extends React.Component {
   }
 
   handleLogClick = ({ target }) => {
-    this.nameInput.current.value = 'Monstruo';
+    this.nameInput.current.value = '';
     this.emailInput.current.value = '';
     this.setState({
       formVisible: true,
@@ -104,6 +97,11 @@ class User extends React.Component {
   removeEvent({ id }) {
     const { unlinkEvent } = this.props;
     unlinkEvent(id);
+  }
+
+  changeRating({ id, rating }) {
+    const { setRating } = this.props;
+    setRating(id, rating);
   }
 
   async doSignup() {
@@ -165,6 +163,7 @@ User.propTypes = {
   events: PropTypes.arrayOf(PropTypes.object),
   onChange: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
+  setRating: PropTypes.func.isRequired,
   linkEvent: PropTypes.func.isRequired,
   unlinkEvent: PropTypes.func.isRequired,
 };

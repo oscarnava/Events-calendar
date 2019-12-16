@@ -36,6 +36,18 @@ export default class App extends React.Component {
       });
   }
 
+  setEventRating = (event, rating) => {
+    const { schedule } = this.user.current;
+
+    return Api.UserEvents.update(schedule[event.id].id, rating)
+      .then((data) => {
+        this.user.current.changeRating(data);
+      })
+      .catch(({ message }) => {
+        alert(message);
+      });
+  }
+
   handleOnUserChange = () => {
     const { schedule } = this.user.current;
 
@@ -54,8 +66,7 @@ export default class App extends React.Component {
         return scheduled ? this.addEventToUser(event) : this.removeEventFromUser(event);
       }
       if (rating !== undefined) {
-        const eventsList = this.eventsList.current;
-        eventsList.updateEvent(event.id, { scheduled: true, rating });
+        return this.setEventRating(event, rating);
       }
     }
 

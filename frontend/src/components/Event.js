@@ -58,8 +58,7 @@ export default class Event extends React.Component {
 
   handleRatingClick = (rating) => {
     // eslint-disable-next-line react/destructuring-assignment
-    const action = this.props.onChange(this, { rating });
-    console.log('handleRatingClick', action);
+    this.props.onChange(this, { rating });
   }
 
   updateState(newState) {
