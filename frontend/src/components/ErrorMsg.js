@@ -36,9 +36,9 @@ const showErrorMessage = (message) => {
   if (!singleton) return;
 
   singleton.setState({ message, visible: true });
-  // setInterval(() => {
-  //   singleton.setState({ visible: false });
-  // }, 10000);
+  setInterval(() => {
+    singleton.setState({ visible: false });
+  }, 10000);
 };
 
 ErrorMsg.defaultProps = {
