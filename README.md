@@ -24,7 +24,7 @@ The events are listed by date, and if the user signs/logs in, the system will ke
 - PostgreSQL: Check [this link](https://www.postgresql.org/download/) if you need to install it.
 
 ### Setup
-You can start by clonning this repository in your local storage. You will notice there are two folders named _**backend**_ and _**frontend**_. Please refer to the specific README inside each folder for further instructions on setting it up.
+You can start by cloning this repository in your local storage. You will notice there are two folders named _**backend**_ and _**frontend**_. Please refer to the specific README inside each folder for further instructions on setting it up.
 
 ### Deployment
 Since this is a rather unusual way of organizing a repository, please check this article on [**Deploying Rails API and React App to Heroku from a single GitHub repo**](https://medium.com/@nothingisfunny/deploying-rails-api-and-react-app-to-heroku-from-a-single-github-repo-7d8597abc55a), or if you prefer you can just [**split the subfolders out into a new repository**](https://help.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository).
@@ -37,14 +37,16 @@ Again, please refer to the specific README inside each folder for further instru
   - Linkedin: [Oscar Nava Trujillo](https://www.linkedin.com/in/oscar-nava-trujillo-15847a14a/)
 
 ### To-do's
-#### Backend
-- Admin panel to create, update and remove events.
-- **Important!** User email validation. (I'm sick of receiving unwanted emails from unverified services; I don't want others to suffer this because of me).
+##### Backend
 
-#### Frontend
-- Possibility to filter the events list to show only the logged user scheduled events.
-- Prevent rating the event before it takes place.
-- Display a divider between events for different days, to aid the user on locating the day's event.
+- [ ] Admin panel to create, update and remove events.
+
+- [ ] **Important!** User email validation. (I'm sick of receiving unwanted emails from unverified services; I don't want others to suffer this because of me).
+
+##### Frontend
+- [ ] Possibility to filter the events list to show only the logged user scheduled events.
+- [ ] Prevent rating the event before it takes place.
+- [ ] Display a divider between events for different days, to aid the user on locating the day's event.
 
 ### Contributing
 📦 Contributions, issues and feature requests are welcome!
@@ -56,3 +58,4 @@ Design idea by [Ibrahim Shaqura on Behance](https://www.behance.net/ibshaqura)
 
 ### License
 Creative Commons [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+
