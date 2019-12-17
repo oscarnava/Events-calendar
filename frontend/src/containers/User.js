@@ -132,7 +132,7 @@ class User extends React.Component {
     return (
       <div className="User">
         <div className="name" style={this.name ? {} : { fontSize: '0.9rem', color: 'lightgrey' }}>
-          {this.name ? `Welcome ${this.name}!` : 'Login to save your schedule  \u2933'}
+          {this.name ? `Welcome ${this.name}!` : 'Login to save your schedule  \u27A1'}
         </div>
         <button type="button" className="login" data-login onClick={this.handleLogClick}>
           Login
