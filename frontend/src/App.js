@@ -50,15 +50,15 @@ export default class App extends React.Component {
   }
 
   handleOnUserChange = () => {
-    const { schedule } = this.user.current;
-
+    const { schedule, name } = this.user.current;
     const eventsList = this.eventsList.current;
+
     this.eventsInfo.forEach(({ id }) => {
       const sched = schedule[id];
       eventsList.updateEvent(id, {
         scheduled: !!sched,
         rating: sched ? sched.rating : null,
-        logged: true,
+        logged: !!name,
       });
     });
   }
