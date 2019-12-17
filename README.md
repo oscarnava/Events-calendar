@@ -13,6 +13,7 @@ The events are listed by date, and if the user signs/logs in, the system will ke
 
 ## Live demo:
   * [Events calendar](https://oscarnava.github.io/Events-calendar/)
+  * [Responsiveness test](http://ami.responsivedesign.is/?url=https%3A%2F%2Foscarnava.github.io%2FEvents-calendar%2F#)
 
 ## Getting Started
 
