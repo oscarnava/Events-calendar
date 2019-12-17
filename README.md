@@ -2,7 +2,7 @@
 
 [<img src="screencaps/screencapture-events-calendar-2019-12-17-10_14.png" align="right" width="30%">](https://oscarnava.github.io/Events-calendar/)
 
-This project consists of an app to publish a calendar of events to follow in my hometown, Morelia.
+This project consists of an app to publish a calendar of events to follow in my hometown, Morelia, in the state of [Michoacán, México](https://en.wikipedia.org/wiki/Morelia).
 
 The events are listed by date, and if the user signs/logs in, the system will keep record of the events added to the user's schedule, and the user will be able to rate the event.
 
