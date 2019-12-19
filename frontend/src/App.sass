@@ -1,0 +1,25 @@
+@import './globals/colors.sass'
+
+#root
+  max-width: 620px
+  margin: 0 auto
+  background-color: $app-background
+
+  .App
+    padding: 0 10px 10px 10px;
+
+    .main-header
+      position: sticky
+      left: 0
+      top: 0
+      margin: 0 -10px
+      background-color: $app-header-color
+      color: white
+      border-radius: 0 0 10px 10px
+      z-index: 999
+
+      h1
+        padding: 0 2rem 1rem
+        border-top: groove 3px lighten($app-header-color, 10%)
+        margin: 0
+        padding-top: .3rem

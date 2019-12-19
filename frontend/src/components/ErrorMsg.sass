@@ -1,0 +1,41 @@
+@import '../globals/colors.sass'
+$window-height: 6rem
+
+.ErrorMsg
+  box-sizing: border-box
+  width: 100%
+  height: $window-height
+  background-color: $app-error-message-color
+  position: sticky
+  left: 0
+  bottom: -2px
+  transition: bottom .3s linear
+  border-top-left-radius: 2rem
+  border-top-right-radius: 2rem
+  padding: 2rem 2rem
+
+  .closeBtn
+    width: 2rem
+    height: 2rem
+    background-color: darken($app-error-message-color, 15%)
+    font-size: .8rem
+    color: white
+    border-radius: 50%
+    border: solid thin maroon
+    position: absolute;
+    top: -0.4rem;
+    right: -0.4rem;
+
+  &.hidden
+    bottom: -$window-height
+    height: 0
+    padding: 0
+
+    .message, .closeBtn
+      display: none
+
+  .message
+    color: $app-error-message-textcolor
+    font-size: 1.3rem
+    font-weight: bold
+    text-align: center

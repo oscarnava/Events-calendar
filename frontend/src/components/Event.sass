@@ -1,0 +1,101 @@
+@import '../globals/colors.sass'
+
+$border-radius: 10px
+
+.Event
+  display: grid
+  padding: 0 1rem
+  grid-template-columns: 30px auto auto 1fr auto
+  grid-template-rows: auto
+  grid-template-areas: "v-line schedule schedule schedule schedule" "v-line title title title add" "v-line description description description add" "v-line more rating category add"
+
+  .schedule
+    grid-area: schedule
+    text-align: left
+    color: $app-timeline-color
+    font-weight: bold
+    font-size: .8rem
+    padding-bottom: .3rem
+    margin-top: 2rem
+
+    &::before
+      content: '\29BF'
+      position: relative
+      font-size: 1.3rem
+      color: $app-header-color
+      left: -24px
+
+  .time-line
+    grid-area: v-line
+    border-right: solid thin $app-header-color
+    margin-right: 15px
+
+  .rating
+    grid-area: rating
+    background-color: white
+    display: flex
+    justify-items: center
+    font-size: 1.5rem
+
+  .title
+    grid-area: title
+    font-weight: bold
+    text-align: center
+    font-size: 1.2rem
+    background-color: white
+    padding: 1rem
+    border-top-left-radius: $border-radius
+    border-top-right-radius: $border-radius
+
+  .description
+    grid-area: description
+    background-color: white
+    font-size: .8rem
+    padding: .2rem 1rem
+    text-align: justify
+
+  .category
+    grid-area: category
+    background-color: white
+    font-weight: bold
+    font-size: .8rem
+    padding: .4rem 1rem
+    text-align: right
+    border-bottom-right-radius: $border-radius
+
+  .btn
+    grid-area: add
+    width: 30px
+    padding: 0
+    margin: 1px
+    border: 1px solid darken($app-add-to-schedule-color, 5%)
+    border-radius: 4px
+    display: flex
+    justify-content: center
+    align-items: stretch
+    align-content: stretch
+
+    span
+      display: block
+      transform: rotate(-90deg)
+      font-weight: bold
+      color: white
+      font-size: .8rem
+
+  .add
+    background-color: $app-add-to-schedule-color
+
+  .scheduled
+    background-color: $app-scheduled-color
+    border-color: darken($app-scheduled-color, 5%)
+
+  .more
+    grid-area: more
+    border: 0
+    background: none
+    color: $app-timeline-color
+    font-size: .8rem
+    padding: 0 1rem
+    background-color: white
+    border-bottom-left-radius: $border-radius
+    cursor: pointer

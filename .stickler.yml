@@ -1,0 +1,22 @@
+linters:
+  rubocop:
+    display_cop_names: true
+    fixer: true
+
+  eslint:
+    config: 'frontend/.eslintrc.json'
+
+fixers:
+  enable: true
+
+files:
+  ignore:
+    - 'backend/bin/*'
+    - 'backend/db/*'
+    - 'backend/config/*'
+    - 'backend/Guardfile'
+    - 'backend/Rakefile'
+    - 'frontend/build/*'
+    - 'frontend/src/serviceWorker.js'
+    - 'frontend/webpack.config.babel.js'
+    - 'frontend/tests/*'
