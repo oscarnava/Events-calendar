@@ -24,7 +24,10 @@ The events are listed by date, and if the user signs/logs in, the system will ke
 - PostgreSQL: Check [this link](https://www.postgresql.org/download/) if you need to install it.
 
 ### Setup
-> _**Important note :**_ Since the big aim of this project was to showcase the use of an API to implement communication between a web application's backend and frontend, both these parts are independent applications in the sense that they can reside in different servers. So, having said that, be aware that by installing the backend you are _**NOT**_ automatically enabling the frontend; you can install them in one single server, or two different servers, but they must be both installed independently.
+> _**Important note :**_ Since the big aim of this project was to showcase the use of an API to implement communication between a web application's backend and frontend, both these parts are independent applications in the sense that they can reside in different servers.
+>
+>So, having said that, be aware that by installing the backend you are _**NOT**_ automatically enabling the frontend; you can install them in one single server, or two different servers, but they must be both installed independently. Notice how, for example, the Live demo frontend is served from GitHub pages and the backend from Heroku.
+>
 > **Apart from the API requests, one application knows nothing about the other.**
 
 You can start by cloning this repository in your local storage. You will notice there are two folders named _**backend**_ and _**frontend**_. Please refer to the specific README inside each folder for further instructions on setting it up.
