@@ -1,4 +1,4 @@
-# Events calendar
+# 📅 Events calendar
 
 [<img src="screencaps/screencapture-events-calendar-2019-12-17-10_14.png" align="right" width="30%">](https://oscarnava.github.io/Events-calendar/)
 
@@ -6,16 +6,16 @@ This project consists of an app to publish a calendar of events to follow in my 
 
 The events are listed by date, and if the user signs/logs in, the system will keep record of the events added to the user's schedule, and the user will be able to rate the event.
 
-## Built with:
+## 🛠 Built with:
 - Ruby / Rails
 - Javascript / React / Redux
 - Lots of coffee...
 
-## Live demo:
+## 👀 Live demo:
   * [Events calendar](https://oscarnava.github.io/Events-calendar/)
   * [Responsiveness test](http://ami.responsivedesign.is/?url=https%3A%2F%2Foscarnava.github.io%2FEvents-calendar%2F#)
 
-## Getting Started
+## ⚙ Getting Started
 
 ### Prerequisites
 - Ruby: Check [this link](https://www.ruby-lang.org/en/documentation/installation/) if you need to install it.
@@ -38,12 +38,13 @@ Since this is a rather unusual way of organizing a repository, please check this
 
 Again, please refer to the specific README inside each folder for further instructions.
 
-### Author
-  👤 Oscar Nava Trujillo
+## 👤 Author
+  ### *Oscar Nava Trujillo*
+  - email: [contact@oscarnava.me](mailto:contact@oscarnava.me)
   - Github: [@oscarnava]( https://github.com/oscarnava )
   - Linkedin: [Oscar Nava Trujillo](https://www.linkedin.com/in/oscar-nava-trujillo-15847a14a/)
 
-### To-do's
+## ⌛ To-do's
 ##### Backend
 
 - [ ] Admin panel to create, update and remove events.
@@ -55,13 +56,13 @@ Again, please refer to the specific README inside each folder for further instru
 - [ ] Prevent rating the event before it takes place.
 - [ ] Display a divider between events for different days, to aid the user on locating the day's event.
 
-### Contributing
-📦 Contributions, issues and feature requests are welcome!
+## 📦 Contributing
+Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues page](https://github.com/oscarnava/Events-calendar/issues).
 
-### Credits
+## 💬 Credits
 Design idea by [Ibrahim Shaqura on Behance](https://www.behance.net/ibshaqura)
 
-### License
+## 🗝 License
 Creative Commons [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
