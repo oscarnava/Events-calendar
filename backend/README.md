@@ -46,8 +46,8 @@ Since this is a mixed repository, to deploy to Heroku you can use this very usef
   - Linkedin: [Oscar Nava Trujillo](https://www.linkedin.com/in/oscar-nava-trujillo-15847a14a/)
 
 ## ⌛ To-do's
-- Admin panel to create, update and remove events.
-- **Important!** User email validation. (I'm sick of receiving unwanted emails from unverified services; I don't want others to suffer this because of me).
+- [ ] Admin panel to create, update and remove events
+- [ ] **Important!** User email validation. (I'm sick of receiving unwanted emails from unverified services; I don't want others to suffer this because of me)
 
 ## 📦 Contributing
 Contributions, issues and feature requests are welcome!

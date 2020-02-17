@@ -61,9 +61,9 @@ For more check: https://facebook.github.io/create-react-app/docs/deployment
   - Linkedin: [Oscar Nava Trujillo](https://www.linkedin.com/in/oscar-nava-trujillo-15847a14a/)
 
 ## ⌛ To-do's
-- Possibility to filter the events list to show only the logged user scheduled events.
-- Prevent rating the event before it takes place.
-- Display a divider between events for different days, to aid the user on locating the day's event.
+- [ ] Possibility to filter the events list to show only the logged user scheduled events
+- [ ] Prevent rating the event before it takes place
+- [ ] Display a divider between events for different days, to aid the user on locating the day's event
 
 ## 📦 Contributing
 Contributions, issues and feature requests are welcome!

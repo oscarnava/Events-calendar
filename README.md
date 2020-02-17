@@ -9,7 +9,7 @@ The events are listed by date, and if the user signs/logs in, the system will ke
 ## 🛠 Built with:
 - Ruby / Rails
 - Javascript / React / Redux
-- Lots of coffee...
+- Lots of coffee! ☕☕☕
 
 ## 👀 Live demo:
   * [Events calendar](https://oscarnava.github.io/Events-calendar/)
@@ -18,10 +18,10 @@ The events are listed by date, and if the user signs/logs in, the system will ke
 ## ⚙ Getting Started
 
 ### Prerequisites
-- Ruby: Check [this link](https://www.ruby-lang.org/en/documentation/installation/) if you need to install it.
-- Rails: Check [this link](https://guides.rubyonrails.org/getting_started.html) if you need to install it.
-- Node.js: Check [this link](https://nodejs.org/es/) if you need to install it.
-- PostgreSQL: Check [this link](https://www.postgresql.org/download/) if you need to install it.
+- Ruby: Check [this link](https://www.ruby-lang.org/en/documentation/installation/) if you need to install it
+- Rails: Check [this link](https://guides.rubyonrails.org/getting_started.html) if you need to install it
+- Node.js: Check [this link](https://nodejs.org/es/) if you need to install it
+- PostgreSQL: Check [this link](https://www.postgresql.org/download/) if you need to install it
 
 ### Setup
 > _**Important note :**_ Since the big aim of this project was to showcase the use of an API to implement communication between a web application's backend and frontend, both these parts are independent applications in the sense that they can reside in different servers.
@@ -47,14 +47,14 @@ Again, please refer to the specific README inside each folder for further instru
 ## ⌛ To-do's
 ##### Backend
 
-- [ ] Admin panel to create, update and remove events.
+- [ ] Admin panel to create, update and remove events
 
-- [ ] **Important!** User email validation. (I'm sick of receiving unwanted emails from unverified services; I don't want others to suffer this because of me).
+- [ ] **Important!** User email validation. (I'm sick of receiving unwanted emails from unverified services; I don't want others to suffer this because of me)
 
 ##### Frontend
-- [ ] Possibility to filter the events list to show only the logged user scheduled events.
-- [ ] Prevent rating the event before it takes place.
-- [ ] Display a divider between events for different days, to aid the user on locating the day's event.
+- [ ] Possibility to filter the events list to show only the logged user scheduled events
+- [ ] Prevent rating the event before it takes place
+- [ ] Display a divider between events for different days, to aid the user on locating the day's event
 
 ## 📦 Contributing
 Contributions, issues and feature requests are welcome!
