@@ -66,3 +66,7 @@ Design idea by [Ibrahim Shaqura on Behance](https://www.behance.net/ibshaqura)
 
 ## 🗝 License
 Creative Commons [Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+
+## 📡 Contact
+
+Please don't hesitate to contact me at 📧 [contact@oscarnava.me](mailto:contact@oscarnava.me) if you have any questions, comments, etc. I would love to know what's on your mind!
